@@ -32,7 +32,8 @@ class Login extends Component
     public function render()
     {
         if (Auth::check()) {
-            return view('livewire.dashboard');
+            $events = auth()->user()->events()->get();
+            return view('livewire.dashboard', ['events' => $events]);
         }
         return view('livewire.login');
     }
